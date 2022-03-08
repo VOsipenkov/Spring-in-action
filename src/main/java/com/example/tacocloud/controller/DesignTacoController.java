@@ -6,10 +6,12 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +27,24 @@ public class DesignTacoController {
 
     @GetMapping
     public String showDesignForm(Model model) {
+        init(model);
+        model.addAttribute("design", new Taco());
+        return "design";
+    }
+
+    @PostMapping
+    public String processDesign(Model model, @Valid Taco design, Errors errors) {
+        if (errors.hasErrors()) {
+            log.error("Errors occurs");
+            init(model);
+            model.addAttribute("design", design);
+            return "design";
+        }
+        log.info(design.toString());
+        return "redirect:/order/current";
+    }
+
+    private void init(Model model) {
         var ingredients = Arrays.asList(
             new Ingredient("FLTO", "Flour Tortilla", WRAP),
             new Ingredient("COTO", "Corn Tortilla", WRAP),
@@ -41,15 +61,6 @@ public class DesignTacoController {
         for (var type : Ingredient.Type.values()) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
-
-        model.addAttribute("design", new Taco());
-        return "design";
-    }
-
-    @PostMapping
-    public String processDesign(Taco design) {
-        log.info(design.toString());
-        return "redirect:/order/current";
     }
 
     private List<Ingredient> filterByType(List<Ingredient> ingredientList, Ingredient.Type type) {
