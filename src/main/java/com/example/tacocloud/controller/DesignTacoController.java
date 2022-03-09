@@ -2,7 +2,10 @@ package com.example.tacocloud.controller;
 
 import com.example.tacocloud.model.Ingredient;
 import com.example.tacocloud.model.Taco;
+import com.example.tacocloud.persistence.IngredientRepository;
+import com.example.tacocloud.persistence.TacoRepository;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,18 +15,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.example.tacocloud.model.Ingredient.Type.*;
-
-@Slf4j
 @Data
+@Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping(value = "/design")
 public class DesignTacoController {
+    private final IngredientRepository ingredientRepository;
+    private final TacoRepository tacoRepository;
 
     @GetMapping
     public String showDesignForm(Model model) {
@@ -41,23 +45,14 @@ public class DesignTacoController {
             return "design";
         }
         log.info(design.toString());
+        var res = tacoRepository.save(design);
+
         return "redirect:/order/current";
     }
 
     private void init(Model model) {
-        var ingredients = Arrays.asList(
-            new Ingredient("FLTO", "Flour Tortilla", WRAP),
-            new Ingredient("COTO", "Corn Tortilla", WRAP),
-            new Ingredient("GRBF", "Ground Beef", PROTEIN),
-            new Ingredient("CARN", "Carnitas", PROTEIN),
-            new Ingredient("TMTO", "Diced Tomatoes", VEGGIES),
-            new Ingredient("LETC", "Lettuce", VEGGIES),
-            new Ingredient("CHED", "Cheddar", CHEESE),
-            new Ingredient("JACK", "Monterrey Jack", CHEESE),
-            new Ingredient("SLSA", "Salsa", SAUCE),
-            new Ingredient("SRCR", "Sour Cream", SAUCE)
-        );
-
+        var ingredients = new ArrayList<Ingredient>();
+        ingredientRepository.findAll().forEach(ingredients::add);
         for (var type : Ingredient.Type.values()) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
