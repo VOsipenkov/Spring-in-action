@@ -18,31 +18,29 @@
 
         <h3>Deliver to</h3>
         <label th:for="name">Name: </label>
-        <input type="text" th:field="*{name}"/></br>
+        <input type="text" th:field="*{deliveryName}"/></br>
 
         <label th:for="street">Street address: </label>
-        <input type="text" th:field="*{street}"/>
+        <input type="text" th:field="*{deliveryStreet}"/>
         <br/>
         <label th:for="city">City: </label>
-        <input type="text" th:field="*{city}"/>
+        <input type="text" th:field="*{deliveryCity}"/>
         <br/>
         <label th:for="state">State: </label>
-        <input type="text" th:field="*{state}"/>
+        <input type="text" th:field="*{deliveryState}"/>
         <br/>
-        <label th:for="zip">Zip code: </label>
-        <input type="text" th:field="*{zip}"/>
+        <label th:for="deliveryZip">Zip: </label>
+        <input type="text" th:field="*{deliveryZip}"/>
         <br/>
-        <h3>Here's how I'll pay...</h3>
-        <label th:for="ccNumber">Credit Card #: </label>
+        <label th:for="ccNumber">ccNumber: </label>
         <input type="text" th:field="*{ccNumber}"/>
         <br/>
-        <label th:for="ccExpiration">Expiration: </label>
+        <label th:for="ccExpiration">ccExpiration: </label>
         <input type="text" th:field="*{ccExpiration}"/>
         <br/>
-        <label th:for="ccCVV">CVV: </label>
+        <label th:for="ccCVV">ccCVV: </label>
         <input type="text" th:field="*{ccCVV}"/>
         <br/>
-
         <input type="submit" value="Submit order"/>
     </form>
 </div>

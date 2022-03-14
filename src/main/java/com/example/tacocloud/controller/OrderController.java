@@ -1,7 +1,9 @@
 package com.example.tacocloud.controller;
 
 import com.example.tacocloud.model.Order;
+import com.example.tacocloud.persistence.JdbcOrderRepository;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 
@@ -18,7 +21,10 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping(value = "/order")
 @SessionAttributes("order")
+@RequiredArgsConstructor
 public class OrderController {
+
+    private final JdbcOrderRepository jdbcOrderRepository;
 
     @GetMapping(value = "/current")
     public String orderForm(Model model) {
@@ -26,11 +32,13 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid Order order, Errors errors) {
+    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
         if (errors.hasErrors()) {
             return "orderForm";
         }
+        jdbcOrderRepository.save(order);
         log.info("Order submitted: {}", order);
+        sessionStatus.setComplete();
         return "redirect:/";
     }
 }
