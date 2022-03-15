@@ -1,13 +1,15 @@
 package com.example.tacocloud.persistence;
 
-import com.example.tacocloud.model.Ingredient;
+import com.example.tacocloud.model.jdbc.Ingredient;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Primary
 @Repository
 @RequiredArgsConstructor
 public class JdbcIngredientRepository implements IngredientRepository {

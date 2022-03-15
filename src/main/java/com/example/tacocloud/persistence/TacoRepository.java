@@ -1,6 +1,6 @@
 package com.example.tacocloud.persistence;
 
-import com.example.tacocloud.model.Taco;
+import com.example.tacocloud.model.jdbc.Taco;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,9 +1,10 @@
 package com.example.tacocloud.persistence;
 
-import com.example.tacocloud.model.Order;
-import com.example.tacocloud.model.Taco;
+import com.example.tacocloud.model.jdbc.Order;
+import com.example.tacocloud.model.jdbc.Taco;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+@Primary
 @Repository
 @RequiredArgsConstructor
 public class JdbcOrderRepository implements OrderRepository {

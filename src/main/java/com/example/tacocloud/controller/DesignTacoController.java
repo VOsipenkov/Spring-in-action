@@ -1,8 +1,8 @@
 package com.example.tacocloud.controller;
 
-import com.example.tacocloud.model.Ingredient;
-import com.example.tacocloud.model.Order;
-import com.example.tacocloud.model.Taco;
+import com.example.tacocloud.model.jdbc.Ingredient;
+import com.example.tacocloud.model.jdbc.Order;
+import com.example.tacocloud.model.jdbc.Taco;
 import com.example.tacocloud.persistence.IngredientRepository;
 import com.example.tacocloud.persistence.TacoRepository;
 import lombok.Data;

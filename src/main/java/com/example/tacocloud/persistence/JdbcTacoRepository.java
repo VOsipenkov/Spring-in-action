@@ -1,13 +1,15 @@
 package com.example.tacocloud.persistence;
 
-import com.example.tacocloud.model.Taco;
+import com.example.tacocloud.model.jdbc.Taco;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Date;
 
+@Primary
 @Repository
 @RequiredArgsConstructor
 public class JdbcTacoRepository implements TacoRepository {

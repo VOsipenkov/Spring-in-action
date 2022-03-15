@@ -1,6 +1,6 @@
 package com.example.tacocloud.controller;
 
-import com.example.tacocloud.model.Order;
+import com.example.tacocloud.model.jdbc.Order;
 import com.example.tacocloud.persistence.JdbcOrderRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

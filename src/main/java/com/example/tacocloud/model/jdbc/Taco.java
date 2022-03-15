@@ -1,4 +1,4 @@
-package com.example.tacocloud.model;
+package com.example.tacocloud.model.jdbc;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
