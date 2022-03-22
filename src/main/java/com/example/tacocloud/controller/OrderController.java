@@ -1,7 +1,8 @@
 package com.example.tacocloud.controller;
 
-import com.example.tacocloud.model.jdbc.Order;
-import com.example.tacocloud.persistence.JdbcOrderRepository;
+import com.example.tacocloud.model.jpa.Order;
+import com.example.tacocloud.persistence.JpaOrderRepository;
+import com.example.tacocloud.persistence.UserRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Data
 @Slf4j
@@ -24,7 +26,8 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final JdbcOrderRepository jdbcOrderRepository;
+    private final JpaOrderRepository jpaOrderRepository;
+    private final UserRepository userRepository;
 
     @GetMapping(value = "/current")
     public String orderForm(Model model) {
@@ -32,11 +35,14 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
+    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus, Principal principal) {
         if (errors.hasErrors()) {
             return "orderForm";
         }
-        jdbcOrderRepository.save(order);
+        var user = userRepository.findUserByUsername(principal.getName());
+        order.setUser(user);
+        jpaOrderRepository.save(order);
+
         log.info("Order submitted: {}", order);
         sessionStatus.setComplete();
         return "redirect:/";

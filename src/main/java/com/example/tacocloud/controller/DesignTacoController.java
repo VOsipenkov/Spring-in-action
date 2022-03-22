@@ -14,6 +14,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -46,7 +47,7 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processDesign(Model model, @Valid Taco taco, @ModelAttribute Order order, Errors errors) {
+    public String processDesign(Model model, @Valid Taco taco, @ModelAttribute Order order, Errors errors, Principal principal) {
         if (errors.hasErrors()) {
             log.error("Errors occurs");
             init(model);
