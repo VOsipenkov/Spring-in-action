@@ -51,6 +51,8 @@
           th:errors="*{name}">Name Error</span>
     <label th:for="name">Name: </label>
     <input type="text" th:field="*{name}"/>
+    <input type="hidden" name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
     <button>Submit your taco</button>
 </form>
 </body>
