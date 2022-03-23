@@ -23,12 +23,16 @@ public class User implements UserDetails {
     private Long id;
 
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "full_name")
     private String fullName;
     private String street;
     private String city;
+    @Column(name = "state")
     private String state;
     private String zip;
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @Override
