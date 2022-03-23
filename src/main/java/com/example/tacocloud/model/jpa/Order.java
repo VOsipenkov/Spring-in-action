@@ -6,8 +6,8 @@ import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -21,8 +21,7 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private Date placedAt;
+    private LocalDateTime placedAt;
     private String deliveryName;
     private String deliveryStreet;
     private String deliveryCity;
@@ -47,6 +46,6 @@ public class Order implements Serializable {
 
     @PrePersist
     void plateAt() {
-        this.placedAt = new Date();
+        this.placedAt = LocalDateTime.now();
     }
 }
