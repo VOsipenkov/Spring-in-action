@@ -28,7 +28,7 @@ public class JdbcTacoRepository implements TacoRepository {
 
     private long saveTaco(Taco taco) {
         var date = java.sql.Date.valueOf(LocalDate.now());
-        long id = jdbcTemplate.update("insert into Taco (name, createdAt) values (?, ?)",
+        long id = jdbcTemplate.update("insert into Taco (name, created_at) values (?, ?)",
             taco.getName(),
             new Date());
         taco.setId(id);

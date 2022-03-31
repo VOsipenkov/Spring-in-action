@@ -8,6 +8,7 @@ import com.example.tacocloud.persistence.TacoRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
 public class DesignTacoController {
     private final IngredientRepository ingredientRepository;
     private final TacoRepository tacoRepository;
+    private final ApplicationContext applicationContext;
 
     @ModelAttribute(name = "taco")
     public Taco taco() {
