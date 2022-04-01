@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.util.CollectionUtils;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Order {
     private String ccNumber;
     private String ccExpiration;
     private String ccCVV;
-    private Timestamp placedAt;
+    private Timestamp placedAt = Timestamp.valueOf(LocalDateTime.now());
     private List<Taco> tacoList;
 
     public void addTaco(Taco taco) {

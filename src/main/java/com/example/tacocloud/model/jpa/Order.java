@@ -21,24 +21,24 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "placedAt")
+    @Column(name = "placed_at")
     private LocalDateTime placedAt;
-    @Column(name = "deliveryName")
+    @Column(name = "delivery_name")
     private String deliveryName;
-    @Column(name = "deliveryStreet")
+    @Column(name = "delivery_street")
     private String deliveryStreet;
-    @Column(name = "deliveryCity")
+    @Column(name = "delivery_city")
     private String deliveryCity;
-    @Column(name = "deliveryState")
+    @Column(name = "delivery_state")
     private String deliveryState;
-    @Column(name = "deliveryZip")
+    @Column(name = "delivery_zip")
     private String deliveryZip;
-    @Column(name = "ccNumber")
+    @Column(name = "cc_number")
     private String ccNumber;
-    @Column(name = "ccExpiration")
+    @Column(name = "cc_expiration")
     private String ccExpiration;
-    @Column(name = "ccCVV")
-    private String ccCVV;
+    @Column(name = "cc_cvv")
+    private String ccCvv;
 
     @ManyToMany(targetEntity = Taco.class)
     private List<Taco> tacos;
