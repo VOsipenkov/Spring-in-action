@@ -91,7 +91,7 @@ public class OrderController {
         if (!CollectionUtils.isEmpty(jdbcTaco.getIngredients())) {
             jpaTaco.setIngredients(jdbcTaco.getIngredients().stream().map(jdbcI -> {
                 Ingredient ingredient = new Ingredient();
-                ingredient.setId(random.nextLong());
+                ingredient.setId(jdbcI);
                 ingredient.setName(jdbcI);
                 return ingredient;
             }).collect(Collectors.toList()));

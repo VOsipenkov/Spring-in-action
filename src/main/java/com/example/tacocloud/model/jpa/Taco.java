@@ -2,6 +2,7 @@ package com.example.tacocloud.model.jpa;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name = "Taco")
+@ToString
 public class Taco {
 
     @Id
@@ -25,7 +27,12 @@ public class Taco {
 
     private LocalDateTime createdAt;
 
-    @ManyToMany(targetEntity = Ingredient.class)
+    @ManyToMany
+    @JoinTable(
+        name="Taco_Ingredients",
+        joinColumns = @JoinColumn(name="taco"),
+        inverseJoinColumns = @JoinColumn(name="ingredient")
+    )
     @Size(min = 1, message = "You must choose at least 1 ingredient")
     private List<Ingredient> ingredients;
 

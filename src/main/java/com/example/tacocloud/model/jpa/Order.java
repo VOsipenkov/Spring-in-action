@@ -2,6 +2,7 @@ package com.example.tacocloud.model.jpa;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name = "Taco_Order")
+@ToString
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,7 +42,7 @@ public class Order implements Serializable {
     @Column(name = "cc_cvv")
     private String ccCvv;
 
-    @ManyToMany(targetEntity = Taco.class)
+    @OneToMany(targetEntity = Taco.class)
     private List<Taco> tacos;
 
     @ManyToOne

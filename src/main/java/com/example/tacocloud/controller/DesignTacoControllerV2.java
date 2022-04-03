@@ -23,7 +23,7 @@ public class DesignTacoControllerV2 {
 
     @GetMapping(value = "/recent", headers = "version=v2")
     public List<Taco> recentTacos() {
-        PageRequest pageRequest = PageRequest.of(0, 3, Sort.by("createdAt").descending());
+        PageRequest pageRequest = PageRequest.of(0, 5, Sort.by("createdAt").descending());
         var tacos = jpaTacoRepository.findAll(pageRequest);
         return tacos.getContent();
     }
@@ -35,5 +35,11 @@ public class DesignTacoControllerV2 {
             return new ResponseEntity<>(taco.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Taco add(@RequestBody Taco taco) {
+        return jpaTacoRepository.save(taco);
     }
 }
