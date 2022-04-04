@@ -42,7 +42,18 @@ public class DesignTacoControllerV3 {
     @ResponseStatus(HttpStatus.CREATED)
     public Taco add(@RequestBody Taco taco) {
         taco.setCreatedAt(LocalDateTime.now());
-        taco.getIngredients().forEach(i->i.setTacos(List.of(taco)));
+        taco.getIngredients().forEach(i -> i.setTacos(List.of(taco)));
         return jpaTacoRepository.save(taco);
+    }
+
+    @PutMapping(consumes = "application/json", headers = {"version=v3"})
+    public Taco put(@RequestBody Taco taco) {
+        return jpaTacoRepository.save(taco);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(value = "/{id}", headers = {"version=v3"})
+    public void delete(@PathVariable long id) {
+        jpaTacoRepository.deleteById(id);
     }
 }
