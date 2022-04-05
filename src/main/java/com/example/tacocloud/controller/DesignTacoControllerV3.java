@@ -1,17 +1,23 @@
 package com.example.tacocloud.controller;
 
+import com.example.tacocloud.model.hateoas.TacoModel;
 import com.example.tacocloud.model.jpa.Taco;
 import com.example.tacocloud.persistence.JpaTacoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.EntityLinks;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Slf4j
 @RestController
@@ -21,19 +27,27 @@ import java.util.List;
 public class DesignTacoControllerV3 {
 
     private final JpaTacoRepository jpaTacoRepository;
+    private final EntityLinks entityLinks;
 
     @GetMapping(value = "/recent", headers = "version=v3")
-    public List<Taco> recentTacos() {
+    public CollectionModel<Taco> recentTacos() {
         PageRequest pageRequest = PageRequest.of(0, 5, Sort.by("createdAt").descending());
-        var tacos = jpaTacoRepository.findAll(pageRequest);
-        return tacos.getContent();
+        var tacos = jpaTacoRepository.findAll(pageRequest).getContent();
+        var tacoCollectionModel = CollectionModel.of(tacos);
+
+        var selfLink = linkTo(DesignTacoControllerV3.class).slash("/recent").withRel("recents");
+        tacoCollectionModel.add(selfLink);
+        return tacoCollectionModel;
     }
 
     @GetMapping(value = "/{id}", headers = {"version=v3"})
-    public ResponseEntity<Taco> findById(@PathVariable("id") Long id) {
+    public ResponseEntity<TacoModel> findById(@PathVariable("id") Long id) {
         var taco = jpaTacoRepository.findById(id);
         if (taco.isPresent()) {
-            return new ResponseEntity<>(taco.get(), HttpStatus.OK);
+            var tacoModel = new TacoModel(taco.get());
+            var link = linkTo(methodOn(DesignTacoControllerV3.class).findById(id)).withRel("self");
+            tacoModel.add(link);
+            return new ResponseEntity<>(tacoModel, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
