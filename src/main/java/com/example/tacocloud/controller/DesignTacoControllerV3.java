@@ -1,6 +1,7 @@
 package com.example.tacocloud.controller;
 
 import com.example.tacocloud.model.hateoas.TacoModel;
+import com.example.tacocloud.model.hateoas.TacoModelAssembler;
 import com.example.tacocloud.model.jpa.Taco;
 import com.example.tacocloud.persistence.JpaTacoRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.server.EntityLinks;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Slf4j
 @RestController
@@ -27,7 +26,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class DesignTacoControllerV3 {
 
     private final JpaTacoRepository jpaTacoRepository;
-    private final EntityLinks entityLinks;
 
     @GetMapping(value = "/recent", headers = "version=v3")
     public CollectionModel<Taco> recentTacos() {
@@ -44,9 +42,7 @@ public class DesignTacoControllerV3 {
     public ResponseEntity<TacoModel> findById(@PathVariable("id") Long id) {
         var taco = jpaTacoRepository.findById(id);
         if (taco.isPresent()) {
-            var tacoModel = new TacoModel(taco.get());
-            var link = linkTo(methodOn(DesignTacoControllerV3.class).findById(id)).withRel("self");
-            tacoModel.add(link);
+            var tacoModel = new TacoModelAssembler(DesignTacoControllerV3.class, TacoModel.class).toModel(taco.get());
             return new ResponseEntity<>(tacoModel, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
