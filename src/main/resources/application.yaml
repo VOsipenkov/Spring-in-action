@@ -1,7 +1,3 @@
-security:
-  basic:
-    enabled: true
-
 logging:
   level:
     org.springframework.security: DEBUG
@@ -9,11 +5,13 @@ logging:
 spring:
   sql.init.mode: embedded
   datasource:
-#    platform: h2
-#    url: jdbc:h2:mem:123123
     username: user
     password:
     driverClassName: org.h2.Driver
   jpa:
     hibernate.ddl-auto: none
+  data:
+    rest:
+      base-path: /api
+
 

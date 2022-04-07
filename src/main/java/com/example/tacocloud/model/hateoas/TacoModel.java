@@ -5,10 +5,12 @@ import com.example.tacocloud.model.jpa.Taco;
 import lombok.Data;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import java.time.LocalDateTime;
 
 @Data
+@Relation(itemRelation = "taco", collectionRelation = "tacos")
 public class TacoModel extends RepresentationModel<TacoModel> {
 
     private static IngredientModelAssembler ingredientModelAssembler =

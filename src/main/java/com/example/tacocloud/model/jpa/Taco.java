@@ -3,6 +3,7 @@ package com.example.tacocloud.model.jpa;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,9 +13,10 @@ import java.util.List;
 
 @Data
 @Entity
+@ToString
+@RestResource(rel = "tacos", path = "tacos")
 @NoArgsConstructor
 @Table(name = "Taco")
-@ToString
 public class Taco {
 
     @Id
@@ -29,11 +31,10 @@ public class Taco {
 
     @ManyToMany
     @JoinTable(
-        name="Taco_Ingredients",
-        joinColumns = @JoinColumn(name="taco"),
-        inverseJoinColumns = @JoinColumn(name="ingredient")
+        name = "Taco_Ingredients",
+        joinColumns = @JoinColumn(name = "taco"),
+        inverseJoinColumns = @JoinColumn(name = "ingredient")
     )
     @Size(min = 1, message = "You must choose at least 1 ingredient")
     private List<Ingredient> ingredients;
-
 }

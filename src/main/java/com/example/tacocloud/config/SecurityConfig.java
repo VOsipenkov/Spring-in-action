@@ -52,8 +52,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .csrf().disable() //todo fix issue
             .formLogin().disable();
-
-http.csrf().disable();
     }
 
     @Override

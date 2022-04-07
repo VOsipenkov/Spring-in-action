@@ -35,8 +35,4 @@ public class JdbcTacoRepository implements TacoRepository {
         taco.setCreatedAt(date);
         return taco.getId();
     }
-
-    private void saveIngredient(Taco taco) {
-
-    }
 }
