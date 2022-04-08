@@ -4,14 +4,20 @@ logging:
 
 spring:
   sql.init.mode: embedded
+
   datasource:
     username: user
     password:
     driverClassName: org.h2.Driver
   jpa:
     hibernate.ddl-auto: none
+
   data:
     rest:
       base-path: /api
 
-
+  activemq:
+    broker-url: tcp://127.0.0.1:61616
+  jms:
+    template:
+      default-destination: tacocloud.order.queue

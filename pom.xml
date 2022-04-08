@@ -101,7 +101,13 @@
             <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
-
+        <!--        Message broker-->
+<!--        https://hub.docker.com/r/webcenter/activemq/-->
+<!--        https://programmer.group/personal-learning-series-springboot-simple-integration-activemq.html-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
