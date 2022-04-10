@@ -1,5 +1,6 @@
 package com.example.tacocloud.controller;
 
+import com.example.tacocloud.model.jpa.Order;
 import com.example.tacocloud.persistence.JpaOrderRepository;
 import com.example.tacocloud.service.JmsOrderingService;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +23,18 @@ public class JmsController {
 
     @ResponseBody
     @GetMapping("/order/send")
-    public void getOrder() {
+    public void sendOrder() {
         PageRequest pageRequest = PageRequest.of(0, 1, Sort.by("placedAt").descending());
         var order = jpaOrderRepository.findAll(pageRequest).getContent();
         jmsOrderingService.send(order.get(0));
         log.info("Message sent..");
+    }
+
+    @ResponseBody
+    @GetMapping("/order/receive/pull")
+    public Order receiveOrderPull() {
+        var order = jmsOrderingService.receivePull();
+        log.info("Received pull response");
+        return order;
     }
 }

@@ -3,18 +3,19 @@ package com.example.tacocloud.model.jpa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
-@ToString
-public class Ingredient {
+public class Ingredient implements Serializable {
+
+    private static final long serialVersionUID = 3L;
 
     @Id
     private String id;

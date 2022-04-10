@@ -1,8 +1,11 @@
 package com.example.tacocloud.model.jpa;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
@@ -15,7 +18,6 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name = "Taco_Order")
-@ToString
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,6 +25,8 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @Column(name = "placed_at")
     private LocalDateTime placedAt;
     @Column(name = "delivery_name")
