@@ -8,7 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +26,11 @@ public class KafkaController {
     public void send() {
         var pageRequest = PageRequest.of(0, 1, Sort.by("placedAt").descending());
         var order = jpaOrderRepository.findAll(pageRequest).getContent().get(0);
-        kafkaTemplate.send("tacocloud.orders.topic", order);
+        kafkaTemplate.send("tacocloud.orders.topic", "one",  order);
         log.info("Order sent to Kafka");
     }
 
-    @ResponseBody
     @KafkaListener(topics = "tacocloud.orders.topic", groupId = "1")
-    @SendTo
     public void receiveOrder(Order order) {
         log.info("Order received from Kafka {}", order);
     }
