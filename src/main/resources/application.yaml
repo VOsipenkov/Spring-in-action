@@ -26,7 +26,6 @@ spring:
       bootstrap-servers:
       - localhost:29888
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-#      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
 #      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       value-serializer: com.example.tacocloud.model.serialization.OrderSerializer
       template:
@@ -36,8 +35,6 @@ spring:
       bootstrap-servers:
       - localhost:29888
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       value-deserializer: com.example.tacocloud.model.serialization.OrderDeserializer
       template:
         default-topic: tacocloud.orders.topic
