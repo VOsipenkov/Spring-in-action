@@ -23,18 +23,33 @@ spring:
       default-destination: tacocloud.order.queue
   kafka:
     producer:
-      bootstrap-servers:
-      - localhost:29888
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      value-serializer: com.example.tacocloud.model.serialization.OrderSerializer
-      template:
-        default-topic: tacocloud.orders.topic
+      order:
+        topic: tacocloud.orders.topic
+        "[bootstrap.servers]": localhost:29888
+        "[key.serializer]": org.apache.kafka.common.serialization.StringSerializer
+        "[value.serializer]": com.example.tacocloud.model.serialization.OrderSerializer
+        template:
+          "[default.topic]": tacocloud.orders.topic
+      taco:
+        topic: tacocloud.tacos.topic
+        "[bootstrap.servers]": localhost:29888
+        "[key.serializer]": org.apache.kafka.common.serialization.StringSerializer
+        "[value.serializer]": com.example.tacocloud.model.serialization.TacoSerializer
+        template:
+          "[default.topic]": tacocloud.orders.taco
 
     consumer:
-      bootstrap-servers:
-      - localhost:29888
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: com.example.tacocloud.model.serialization.OrderDeserializer
-      template:
-        default-topic: tacocloud.orders.topic
+      order:
+        topic: tacocloud.orders.topic
+        "[bootstrap.servers]": localhost:29888
+        "[key.deserializer]": org.apache.kafka.common.serialization.StringDeserializer
+        "[value.deserializer]": com.example.tacocloud.model.serialization.OrderDeserializer
+        template:
+          "[default.topic]": tacocloud.orders.topic
+      taco:
+        topic: tacocloud.tacos.topic
+        "[bootstrap.servers]": localhost:29888
+        "[key.deserializer]": org.apache.kafka.common.serialization.StringDeserializer
+        "[value.deserializer]": com.example.tacocloud.model.serialization.TacoDeserializer
+        template:
+          "[default.topic]": tacocloud.tacos.topic

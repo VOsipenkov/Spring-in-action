@@ -1,12 +1,14 @@
 package com.example.tacocloud.controller;
 
 import com.example.tacocloud.model.jpa.Order;
+import com.example.tacocloud.model.jpa.Taco;
 import com.example.tacocloud.persistence.JpaOrderRepository;
+import com.example.tacocloud.persistence.JpaTacoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,20 +20,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequiredArgsConstructor
 @RequestMapping(value = "/kafka")
 public class KafkaController {
+
     private final JpaOrderRepository jpaOrderRepository;
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final JpaTacoRepository jpaTacoRepository;
+    private final KafkaTemplate<String, Order> orderKafkaTemplate;
+    private final KafkaTemplate<String, Taco> tacoKafkaTemplate;
+    private final ApplicationContext applicationContext;
 
     @ResponseBody
     @GetMapping(value = "/order/send")
-    public void send() {
+    public void sendOrder() {
         var pageRequest = PageRequest.of(0, 1, Sort.by("placedAt").descending());
         var order = jpaOrderRepository.findAll(pageRequest).getContent().get(0);
-        kafkaTemplate.send("tacocloud.orders.topic", "one",  order);
+        orderKafkaTemplate.send("tacocloud.orders.topic", "one", order);
         log.info("Order sent to Kafka");
     }
 
-    @KafkaListener(topics = "tacocloud.orders.topic", groupId = "1")
-    public void receiveOrder(Order order) {
-        log.info("Order received from Kafka {}", order);
+    @ResponseBody
+    @GetMapping(value = "/taco/send")
+    public void sendTaco() {
+        var pageRequest = PageRequest.of(0, 1, Sort.by("createdAt").descending());
+        var taco = jpaTacoRepository.findAll(pageRequest).getContent().get(0);
+        tacoKafkaTemplate.send("tacocloud.tacos.topic", "two", taco);
+        log.info("Taco sent to Kafka");
     }
 }
