@@ -8,11 +8,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
-import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
 import org.springframework.kafka.listener.MessageListener;
@@ -65,14 +65,12 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Order> orderKafkaMessageListenerContainer(
+    public ConcurrentMessageListenerContainer<String, Order> orderKafkaMessageListenerContainer(
         Properties orderConsumerProperties, DefaultKafkaConsumerFactory orderConsumerFactory) {
         var containerProperties = new ContainerProperties(new String[]{(String) orderConsumerProperties.get("topic")});
         containerProperties.setMessageListener(orderMessageListener());
         containerProperties.setGroupId("first");
-        var container = new ConcurrentKafkaListenerContainerFactory();
-        container.setConsumerFactory(orderConsumerFactory);
-        return container;
+        return new ConcurrentMessageListenerContainer(orderConsumerFactory, containerProperties);
     }
 
     //     Taco
