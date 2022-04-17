@@ -17,4 +17,13 @@ public class KafkaService {
     public void taco() {
         System.out.println("=========================Taco=========================");
     }
+
+
+    public void checkOrder(){
+        System.out.println("=========================Order2=========================");
+    }
+
+    public void checkTaco(){
+        System.out.println("=========================Taco2=========================");
+    }
 }

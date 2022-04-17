@@ -53,3 +53,11 @@ spring:
         "[value.deserializer]": com.example.tacocloud.model.serialization.TacoDeserializer
         template:
           "[default.topic]": tacocloud.tacos.topic
+      logEvent:
+        topic: tacocloud.logEvent.topic
+        "[bootstrap.servers]": localhost:29888
+        "[key.deserializer]": org.apache.kafka.common.serialization.StringDeserializer
+        "[value.deserializer]": com.example.tacocloud.model.serialization.TacoDeserializer
+        template:
+          "[default.topic]": tacocloud.logEvent.topic
+

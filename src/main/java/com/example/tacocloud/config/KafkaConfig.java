@@ -2,6 +2,8 @@ package com.example.tacocloud.config;
 
 import com.example.tacocloud.model.jpa.Order;
 import com.example.tacocloud.model.jpa.Taco;
+import com.example.tacocloud.service.KafkaService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -25,7 +27,10 @@ import java.util.Properties;
 @Configuration
 @EnableKafka
 @EnableConfigurationProperties
+@RequiredArgsConstructor
 public class KafkaConfig {
+
+    private final KafkaService kafkaService;
 
     // Order
     @Bean
@@ -37,6 +42,12 @@ public class KafkaConfig {
     @Bean
     @ConfigurationProperties("spring.kafka.consumer.order")
     public Properties orderConsumerProperties() {
+        return new Properties();
+    }
+
+    @Bean
+    @ConfigurationProperties("spring.kafka.consumer.log-event")
+    public Properties logEventConsumerProperties() {
         return new Properties();
     }
 
@@ -61,7 +72,7 @@ public class KafkaConfig {
 
     @Bean
     public MessageListener orderMessageListener() {
-        return o -> log.info("Order received from Kafka {}", o);
+        return o -> kafkaService.checkOrder();
     }
 
     @Bean
@@ -107,7 +118,7 @@ public class KafkaConfig {
 
     @Bean
     public MessageListener tacoConsumerListener() {
-        return (MessageListener<String, Taco>) data -> log.info("Taco received from Kafka {}", data);
+        return (o)->kafkaService.checkTaco();
     }
 
     @Bean
