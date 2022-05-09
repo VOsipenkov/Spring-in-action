@@ -105,7 +105,7 @@ public class KafkaConfig {
     }
 
     @Bean
-    public DefaultKafkaConsumerFactory tacoConsumerFactory(Properties tacoConsumerProperties) {
+    public DefaultKafkaConsumerFactory<String, Taco> tacoConsumerFactory(Properties tacoConsumerProperties) {
         var props = new HashMap<String, Object>();
         tacoConsumerProperties.stringPropertyNames().forEach(p -> props.put(p, tacoConsumerProperties.get(p)));
         return new DefaultKafkaConsumerFactory<>(props);
@@ -117,17 +117,16 @@ public class KafkaConfig {
     }
 
     @Bean
-    public MessageListener tacoConsumerListener() {
-        return (o)->kafkaService.checkTaco();
+    public MessageListener<String, Taco> tacoConsumerListener() {
+        return (o)->kafkaService.checkTaco(o);
     }
 
     @Bean
-    public KafkaMessageListenerContainer tacoConcurrentMessageListenerContainer(
-        Properties tacoConsumerProperties, DefaultKafkaConsumerFactory tacoConsumerFactory) {
-        var containerProperties = new ContainerProperties(new String[]{(String) tacoConsumerProperties.get("topic")});
+    public KafkaMessageListenerContainer<String, Taco> tacoConcurrentMessageListenerContainer(
+        Properties tacoConsumerProperties, DefaultKafkaConsumerFactory<String, Taco> tacoConsumerFactory) {
+        var containerProperties = new ContainerProperties((String) tacoConsumerProperties.get("topic"));
         containerProperties.setGroupId("taco-id");
         containerProperties.setMessageListener(tacoConsumerListener());
-        var container = new KafkaMessageListenerContainer<>(tacoConsumerFactory, containerProperties);
-        return container;
+        return new KafkaMessageListenerContainer<>(tacoConsumerFactory, containerProperties);
     }
 }
