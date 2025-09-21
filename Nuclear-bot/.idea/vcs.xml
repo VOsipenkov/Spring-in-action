@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nuclear-bot-core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nuclear-bot-doc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nuclear-bot-health-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nuclear-bot-k8s" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nuclear-bot-parsing-agent-radon" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nuclear-bot-parsing-agent-ua" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nuclear-bot-parsing-processor" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Nuclear-bot-telegram" vcs="Git" />
+  </component>
+</project>

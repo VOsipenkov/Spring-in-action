@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9dc8a395-9a8a-4234-ad92-65187f6941f2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../mysocket/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Actuator/Actuator" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-core" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-core" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-health-service" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-health-service" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-health-service/src/main/java/nuclear/bot/web/HealthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-health-service/src/main/java/nuclear/bot/web/HealthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-k8s" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-k8s" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-k8s/src/deployments/postgres/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-k8s/src/deployments/postgres/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-k8s/src/deployments/postgres/db-storage-class.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-k8s/src/deployments/postgres/db-storage-class.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-parsing-agent-radon" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-parsing-agent-radon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-parsing-agent-ua" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-parsing-agent-ua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nuclear-bot-telegram" beforeDir="false" afterPath="$PROJECT_DIR$/Nuclear-bot-telegram" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-kafka/requests/request/scratch_1.http" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-kafka/requests/request/scratch_1.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-kafka/src/main/java/com/home/kafka/ebmbededkafka/EbmbededKafkaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-kafka/src/main/java/com/home/kafka/ebmbededkafka/EbmbededKafkaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-kafka/src/main/java/com/home/kafka/ebmbededkafka/service/ProcessMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-kafka/src/main/java/com/home/kafka/ebmbededkafka/service/ProcessMessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-kafka/src/main/java/com/home/kafka/ebmbededkafka/web/ProcessMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-kafka/src/main/java/com/home/kafka/ebmbededkafka/web/ProcessMessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Spring-kafka/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Spring-kafka/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/TacoCloudApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/controller/DesignTacoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/controller/DesignTacoControllerV2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/controller/HomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/controller/OrderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/controller/RegistrationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/model/jdbc/Ingredient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/model/jdbc/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/model/jdbc/RegistrationForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/model/jdbc/Taco.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/model/jpa/Ingredient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/model/jpa/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/model/jpa/Taco.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/model/jpa/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/IngredientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/JdbcIngredientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/JdbcOrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/JdbcTacoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/JpaIngredientRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/JpaOrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/JpaTacoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/OrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/TacoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/persistence/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/com/example/tacocloud/service/UserRepositoryUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/static/taco.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/design.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/orderForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/resources/templates/registration.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/test/java/com/example/tacocloud/TacoCloudApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2sz8JNO22aoO8k2MzU4lntCQqp4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/learn/Nuclear-bot"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9dc8a395-9a8a-4234-ad92-65187f6941f2" name="Changes" comment="" />
+      <created>1739446969506</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739446969506</updated>
+      <workItem from="1739446970674" duration="4000" />
+    </task>
+    <servers />
+  </component>
+</project>
